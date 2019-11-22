@@ -1,0 +1,11 @@
+{
+  "TAB1": {
+    "TITLE": "Ionic Starter Project",
+    "SUBTITLE": "Dein Repository zum Durchstarten",
+    "GERMAN": "Deutsch",
+    "ENGLISH": "Englisch",
+    "TYPE_HERE": "Hier tippen",
+    "USER_NAME": "Username",
+    "USERNAME_IN_STATE": "Username aus redux state"
+  }
+}

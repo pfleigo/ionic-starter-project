@@ -1,4 +1,35 @@
-.welcome-card img {
-  max-height: 35vh;
+.subtitle {
+  text-align: center;
+}
+
+ion-img {
+  height: 200px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.content-container {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  margin: 20px;
   overflow: hidden;
+  padding-bottom: 10px;
+
+  ion-item {
+    --padding-end: 20px;
+  }
+}
+
+.content-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+  color: white;
+  background: rgb(87, 226, 193);
 }

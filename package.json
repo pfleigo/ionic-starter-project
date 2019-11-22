@@ -6,13 +6,28 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "android": "ionic cordova run android --emulator",
+    "android:device": "ionic cordova run android --device",
+    "ios": "ionic cordova run ios --emulator",
+    "ios:device": "ionic cordova run ios --device",
     "build": "ng build",
+    "build:ios:release": "ionic cordova build ios --device --release",
+    "build:ios:debug": "ionic cordova build ios --device --debug",
+    "build:android:release": "ionic cordova build android --device --release",
+    "build:android:debug": "ionic cordova build android --device --debug",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint": "npm run lint:ts && npm run lint:scss",
+    "lint:scss": "stylelint 'src/**/*.scss' --quiet",
+    "lint:ts": "tsc --noEmit && tslint --project tsconfig.json",
+    "precommit": "lint-staged && npm test",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "changelog": "standard-changelog --infile=CHANGELOG.md --outfile=CHANGELOG.md",
+    "reset": "rm -fr platforms/ plugins/; cordova prepare"
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^10.0.0",
     "@angular/common": "~8.1.2",
     "@angular/core": "~8.1.2",
     "@angular/forms": "~8.1.2",
@@ -23,7 +38,15 @@
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
+    "@ngx-translate/core": "^11.0.1",
     "core-js": "^2.5.4",
+    "localforage": "^1.7.3",
+    "redux": "4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-freeze": "^0.1.7",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -37,11 +60,15 @@
     "@angular/compiler": "~8.1.2",
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@ionic/angular-toolkit": "^2.1.1",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
+    "@types/react": "^16.9.11",
     "codelyzer": "^5.0.0",
+    "ionic": "^5.4.7",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -49,10 +76,22 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
     "protractor": "~5.4.0",
+    "standard-changelog": "^2.0.18",
+    "stylelint": "^12.0.0",
+    "stylelint-config-recommended": "^3.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "Hybrid Heroes Ionic Starter",
+  "lint-staged": {
+    "src/**/*.{js,ts,json,scss}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
